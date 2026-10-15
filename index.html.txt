@@ -1,0 +1,1761 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#561522">
+  <title>Cooking Club | Cook Together, Grow Together</title>
+
+  <style>
+    :root {
+      --wine: #561522;
+      --wine-dark: #351019;
+      --wine-light: #7b293c;
+      --rose: #ead0d5;
+      --rose-light: #f7e9eb;
+      --cream: #fcf8f3;
+      --white: #ffffff;
+      --black: #171315;
+      --gray: #74696a;
+      --border: #e4d1d2;
+      --gold: #c9a66b;
+      --green: #245c43;
+      --red: #a12d35;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 85px;
+    }
+
+    body {
+      background: var(--cream);
+      color: var(--black);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.75;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    img,
+    video,
+    iframe {
+      max-width: 100%;
+    }
+
+    img {
+      display: block;
+    }
+
+    .container {
+      width: min(1160px, 90%);
+      margin: auto;
+    }
+
+    section {
+      scroll-margin-top: 85px;
+    }
+
+    .section {
+      padding: 82px 0;
+    }
+
+    .bg-cream {
+      background: var(--cream);
+    }
+
+    .bg-white {
+      background: var(--white);
+    }
+
+    .bg-wine {
+      background: var(--wine);
+      color: var(--white);
+    }
+
+    .eyebrow {
+      color: var(--wine-light);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .hero .eyebrow,
+    .bg-wine .eyebrow,
+    .page-banner .eyebrow {
+      color: var(--gold);
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      line-height: 1.3;
+    }
+
+    .section-title {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(32px, 4.5vw, 49px);
+      color: var(--wine);
+      margin: 12px 0 20px;
+    }
+
+    .bg-wine .section-title {
+      color: var(--white);
+    }
+
+    .section-intro {
+      max-width: 720px;
+      color: var(--gray);
+      margin-bottom: 32px;
+    }
+
+    .bg-wine .section-intro {
+      color: #f0dfe2;
+    }
+
+    .section-heading {
+      margin-bottom: 32px;
+    }
+
+    .grid-2,
+    .grid-3 {
+      display: grid;
+      gap: 25px;
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    /* BUTTONS */
+    .btn {
+      display: inline-block;
+      padding: 12px 23px;
+      border: 1px solid var(--wine);
+      border-radius: 5px;
+      background: var(--wine);
+      color: var(--white);
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      text-align: center;
+      transition: 0.25s ease;
+    }
+
+    .btn:hover {
+      background: var(--wine-dark);
+      border-color: var(--wine-dark);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border-color: var(--rose);
+      color: var(--white);
+    }
+
+    .btn-outline:hover {
+      background: var(--white);
+      color: var(--wine);
+      border-color: var(--white);
+    }
+
+    .btn-light {
+      background: var(--cream);
+      border-color: var(--cream);
+      color: var(--wine);
+    }
+
+    .btn-light:hover {
+      background: var(--rose-light);
+      border-color: var(--rose-light);
+    }
+
+    /* NAVIGATION */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--cream);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .navbar {
+      min-height: 78px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .logo {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 23px;
+      font-weight: bold;
+      color: var(--wine);
+      white-space: nowrap;
+    }
+
+    .logo span {
+      color: var(--wine-light);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .nav-links a {
+      padding: 9px 10px;
+      font-size: 13px;
+      font-weight: 700;
+      border-radius: 4px;
+      transition: 0.2s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      background: var(--rose-light);
+      color: var(--wine);
+    }
+
+    .nav-links a.join-link {
+      background: var(--wine);
+      color: var(--white);
+    }
+
+    .menu-toggle {
+      display: none;
+      background: var(--wine);
+      color: white;
+      border: none;
+      padding: 9px 13px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    /* HERO */
+    .hero {
+      background:
+        radial-gradient(ellipse at 85% 15%, #7c3446 0%, transparent 40%),
+        var(--wine-dark);
+      color: var(--white);
+      padding: 75px 0;
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 42px;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(43px, 5.7vw, 70px);
+      line-height: 1.08;
+      margin: 20px 0;
+    }
+
+    .hero h1 em {
+      color: var(--gold);
+      font-style: normal;
+    }
+
+    .hero-description {
+      color: #f0e2e4;
+      max-width: 560px;
+      margin-bottom: 27px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    /* VIDEO */
+    .video-box {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #21191b;
+      overflow: hidden;
+      border: 1px solid #79505a;
+      border-radius: 7px;
+    }
+
+    .video-box iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .hero-video {
+      box-shadow: 0 18px 45px #00000035;
+    }
+
+    .video-caption {
+      margin-top: 10px;
+      color: #f0dfe2;
+      font-size: 12px;
+      text-align: center;
+    }
+
+    /* FEATURES */
+    .feature {
+      padding: 27px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      transition: 0.25s ease;
+    }
+
+    .feature:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 35px #35101912;
+    }
+
+    .feature-number {
+      display: grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      background: var(--wine);
+      color: white;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      margin-bottom: 16px;
+    }
+
+    .feature h3 {
+      color: var(--wine);
+      margin-bottom: 9px;
+    }
+
+    .feature p {
+      color: var(--gray);
+      font-size: 14px;
+    }
+
+    /* MEMBER CARDS */
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 35px #35101912;
+    }
+
+    .member-card {
+      padding: 18px;
+      text-align: center;
+    }
+
+    .member-photo {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      margin-bottom: 18px;
+      border-radius: 4px;
+    }
+
+    .photo-placeholder {
+      min-height: 260px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+      margin-bottom: 18px;
+      background: var(--rose-light);
+      border: 1px dashed #b77b88;
+      color: var(--wine);
+    }
+
+    .photo-placeholder .symbol {
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+
+    .photo-placeholder small {
+      color: var(--gray);
+      margin-top: 5px;
+    }
+
+    .member-card h3 {
+      color: var(--wine);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 23px;
+      margin-bottom: 8px;
+    }
+
+    .member-card > p {
+      color: var(--gray);
+      font-size: 14px;
+    }
+
+    .dream {
+      text-align: left;
+      padding: 13px;
+      margin-top: 16px;
+      background: var(--rose-light);
+      color: var(--wine);
+      font-size: 13px;
+    }
+
+    .university-box {
+      text-align: left;
+      padding: 14px;
+      margin-top: 15px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+    }
+
+    .university-label {
+      display: block;
+      color: var(--gray);
+      font-size: 11px;
+      font-weight: 800;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .university-link {
+      color: var(--wine);
+      font-size: 13px;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      overflow-wrap: anywhere;
+    }
+
+    .university-link:hover {
+      color: var(--wine-light);
+      text-decoration: underline;
+    }
+
+    /* ACTIVITIES */
+    .activity-card {
+      background: white;
+      padding: 25px;
+      border: 1px solid var(--border);
+      transition: 0.25s ease;
+    }
+
+    .activity-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 35px #35101912;
+    }
+
+    .activity-icon {
+      font-size: 34px;
+    }
+
+    .activity-card h3 {
+      color: var(--wine);
+      margin: 12px 0;
+    }
+
+    .activity-card p {
+      color: var(--gray);
+      font-size: 14px;
+    }
+
+    /* SCHEDULE */
+    .schedule-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      background: var(--white);
+    }
+
+    .schedule {
+      border-collapse: collapse;
+      width: 100%;
+      min-width: 780px;
+    }
+
+    .schedule th {
+      background: var(--wine);
+      color: var(--white);
+      padding: 15px 10px;
+      text-align: center;
+      font-size: 13px;
+    }
+
+    .schedule td {
+      padding: 13px 10px;
+      text-align: center;
+      border: 1px solid var(--border);
+      color: var(--wine);
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .schedule td:first-child {
+      text-align: left;
+      background: var(--rose-light);
+      min-width: 190px;
+    }
+
+    .schedule tr:nth-child(even) td:not(:first-child) {
+      background: #fdf9f7;
+    }
+
+    .schedule .marked {
+      background: #f4e1e5 !important;
+      color: var(--wine);
+      font-size: 21px;
+      font-weight: 900;
+    }
+
+    .schedule-note {
+      margin-top: 14px;
+      font-size: 13px;
+      font-style: italic;
+      color: var(--gray);
+    }
+
+    .schedule-legend {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      margin-top: 12px;
+      color: var(--gray);
+      font-size: 13px;
+    }
+
+    .legend-check {
+      color: var(--wine);
+      font-weight: 900;
+      font-size: 18px;
+    }
+
+    /* RECIPES */
+    .recipe {
+      padding: 28px;
+      margin-bottom: 28px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 5px;
+    }
+
+    .recipe-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      display: inline-block;
+      background: var(--rose-light);
+      color: var(--wine);
+      padding: 4px 10px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .recipe h3 {
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--wine);
+      font-size: clamp(23px, 3vw, 30px);
+      margin: 12px 0;
+    }
+
+    .recipe-description {
+      color: var(--gray);
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    .recipe-details {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 30px;
+    }
+
+    .recipe h4 {
+      color: var(--wine-light);
+      margin: 10px 0;
+    }
+
+    .recipe ul,
+    .recipe ol {
+      padding-left: 22px;
+      color: var(--gray);
+      font-size: 14px;
+    }
+
+    .recipe li {
+      margin: 5px 0;
+    }
+
+    .recipe-video-title {
+      margin-top: 25px;
+      margin-bottom: 10px;
+      color: var(--wine);
+      font-weight: 800;
+    }
+
+    .recipe-video .video-box {
+      border-color: var(--border);
+    }
+
+    .recipe-video .video-caption {
+      color: var(--gray);
+      text-align: left;
+    }
+
+    /* JOIN US */
+    .join-banner {
+      background: var(--black);
+      color: white;
+      padding: 38px;
+      margin-bottom: 40px;
+      border-radius: 5px;
+    }
+
+    .join-banner h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(30px, 4vw, 44px);
+      margin: 12px 0;
+      line-height: 1.35;
+    }
+
+    .join-banner > p {
+      color: #e0d5d6;
+    }
+
+    .group-photo-placeholder {
+      max-width: 900px;
+      min-height: 260px;
+      margin: 0 auto 45px;
+      border: 3px solid var(--gold);
+      border-radius: 8px;
+      background: var(--rose-light);
+      color: var(--wine);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .group-photo-placeholder .symbol {
+      font-size: 42px;
+    }
+
+    .benefit {
+      background: #292326;
+      border-left: 3px solid var(--gold);
+      padding: 18px;
+    }
+
+    .benefit strong {
+      color: var(--gold);
+    }
+
+    .benefit p {
+      color: #e4d9da;
+      font-size: 13px;
+      margin-top: 6px;
+    }
+
+    .form-layout {
+      display: grid;
+      grid-template-columns: 0.75fr 1.25fr;
+      gap: 25px;
+      align-items: start;
+    }
+
+    .form-aside {
+      background: var(--wine-dark);
+      color: white;
+      padding: 28px;
+    }
+
+    .form-aside h3 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 28px;
+      margin-top: 10px;
+    }
+
+    .form-aside p {
+      color: #f0dfe2;
+      margin-top: 15px;
+    }
+
+    .form-card {
+      background: white;
+      border: 1px solid var(--border);
+      padding: 28px;
+      color: var(--black);
+    }
+
+    .form-card h3 {
+      color: var(--wine);
+      margin-bottom: 20px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 17px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    .field label {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--wine);
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--cream);
+      color: var(--black);
+      outline: none;
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-color: var(--wine);
+      box-shadow: 0 0 0 2px #56152215;
+    }
+
+    .field textarea {
+      resize: vertical;
+      min-height: 110px;
+    }
+
+    .form-message {
+      display: none;
+      margin-top: 18px;
+      padding: 14px;
+      border-left: 4px solid;
+      border-radius: 3px;
+      font-size: 14px;
+      overflow-wrap: anywhere;
+    }
+
+    .form-message.success {
+      display: block;
+      background: #eaf5ee;
+      color: var(--green);
+      border-color: var(--green);
+    }
+
+    .form-message.error {
+      display: block;
+      background: #fff0f0;
+      color: var(--red);
+      border-color: var(--red);
+    }
+
+    .form-note {
+      color: var(--gray);
+      font-size: 12px;
+      margin-top: 12px;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--wine-dark);
+      color: white;
+      padding: 45px 0 20px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr 1fr;
+      gap: 35px;
+      padding-bottom: 30px;
+    }
+
+    footer h3 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 22px;
+      margin-bottom: 13px;
+    }
+
+    footer p,
+    footer a {
+      color: #e7d8db;
+      font-size: 13px;
+    }
+
+    footer a:hover {
+      color: var(--gold);
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .footer-bottom {
+      padding-top: 18px;
+      border-top: 1px solid #ffffff25;
+      text-align: center;
+      color: #d5c0c4;
+      font-size: 12px;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 1000px) {
+      .nav-links a {
+        padding: 8px 7px;
+        font-size: 11px;
+      }
+
+      .hero-grid {
+        gap: 25px;
+      }
+
+      .form-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .section {
+        padding: 58px 0;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .navbar {
+        position: relative;
+        min-height: 70px;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background: var(--cream);
+        border: 1px solid var(--border);
+        padding: 12px;
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+
+      .nav-links a {
+        padding: 11px;
+        font-size: 14px;
+      }
+
+      .hero-grid,
+      .grid-2,
+      .grid-3,
+      .recipe-details {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding: 55px 0;
+      }
+
+      .hero h1 {
+        font-size: clamp(40px, 11vw, 60px);
+      }
+
+      .join-banner {
+        padding: 25px;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .field.full {
+        grid-column: auto;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+      }
+
+      .recipe {
+        padding: 20px;
+      }
+
+      .member-photo,
+      .photo-placeholder {
+        min-height: 230px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- THANH ĐIỀU HƯỚNG -->
+  <header>
+    <div class="container navbar">
+      <a href="#home" class="logo">COOKING <span>CLUB.</span></a>
+
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        type="button"
+        aria-label="Mở menu"
+        aria-expanded="false"
+      >
+        ☰ Menu
+      </button>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="#home">Trang chủ</a>
+        <a href="#about">Giới thiệu</a>
+        <a href="#members">Thành viên</a>
+        <a href="#activities">Hoạt động</a>
+        <a href="#schedule">Lịch sinh hoạt</a>
+        <a href="#recipes">Công thức</a>
+        <a href="#join" class="join-link">Tham gia</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- TRANG CHỦ -->
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+
+        <div>
+          <p class="eyebrow">COOK TOGETHER · GROW TOGETHER</p>
+
+          <h1>
+            Made with <em>Love,</em><br>
+            Shared with Everyone.
+          </h1>
+
+          <p class="hero-description">
+            Chào mừng đến với Cooking Club, nơi những người yêu ẩm thực
+            cùng khám phá công thức mới, chia sẻ niềm vui và tạo nên
+            những kỷ niệm đáng nhớ qua từng món ăn.
+          </p>
+
+          <div class="hero-buttons">
+            <a href="#about" class="btn btn-light">Khám phá câu lạc bộ</a>
+            <a href="#join" class="btn btn-outline">Tham gia ngay</a>
+          </div>
+        </div>
+
+        <!-- VIDEO TRANG CHỦ:
+             Thay DAN_LINK_EMBED_VIDEO_TRANG_CHU bằng link nhúng YouTube.
+             Ví dụ: https://www.youtube.com/embed/VIDEO_ID -->
+        <div>
+          <div class="video-box hero-video">
+            <iframe
+              src="DAN_LINK_EMBED_VIDEO_TRANG_CHU"
+              title="Video giới thiệu Cooking Club"
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <p class="video-caption">
+            Một chút hương vị, thật nhiều niềm vui.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- GIỚI THIỆU -->
+    <section class="section bg-white" id="about">
+      <div class="container">
+
+        <div class="section-heading">
+          <p class="eyebrow">OUR STORY</p>
+
+          <h2 class="section-title">
+            A club, a kitchen,<br>
+            a thousand possibilities.
+          </h2>
+
+          <p class="section-intro">
+            Cooking Club không chỉ là nơi học nấu ăn mà còn là nơi chúng mình
+            cùng sáng tạo, học hỏi kỹ năng mới và kết nối với những người
+            có chung niềm đam mê ẩm thực.
+          </p>
+        </div>
+
+        <div class="grid-3">
+
+          <article class="feature">
+            <div class="feature-number">01</div>
+            <h3>Sứ mệnh</h3>
+            <p>
+              Truyền cảm hứng nấu ăn, khuyến khích lối sống tích cực
+              và giúp mỗi thành viên tự tin hơn trong căn bếp.
+            </p>
+          </article>
+
+          <article class="feature">
+            <div class="feature-number">02</div>
+            <h3>Tầm nhìn</h3>
+            <p>
+              Xây dựng một cộng đồng trẻ năng động, sáng tạo,
+              nơi mọi người cùng chia sẻ tình yêu dành cho ẩm thực.
+            </p>
+          </article>
+
+          <article class="feature">
+            <div class="feature-number">03</div>
+            <h3>Giá trị cốt lõi</h3>
+            <p>
+              Đoàn kết, trách nhiệm, sáng tạo và luôn sẵn sàng
+              học hỏi từ những trải nghiệm mới.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- THÀNH VIÊN -->
+    <section class="section bg-cream" id="members">
+      <div class="container">
+
+        <div class="section-heading">
+          <p class="eyebrow">MEET OUR TEAM</p>
+
+          <h2 class="section-title">
+            Three people.<br>
+            One shared passion.
+          </h2>
+
+          <p class="section-intro">
+            Mỗi thành viên mang đến một cá tính riêng, nhưng tất cả
+            đều gặp nhau ở tình yêu nấu nướng và tinh thần đồng đội.
+          </p>
+        </div>
+
+        <div class="grid-3">
+
+          <!-- THÀNH VIÊN 1 -->
+          <article class="card member-card">
+
+            <!-- Nếu có ảnh, thay phần photo-placeholder bằng:
+            <img src="LINK_ANH_NHI" alt="Ảnh Thảo Nhi" class="member-photo">
+            -->
+
+            <div class="photo-placeholder">
+              <span class="symbol">📷</span>
+              <strong>ẢNH THẢO NHI</strong>
+            </div>
+
+            <h3>Nguyễn Diệu Thảo Nhi</h3>
+
+            <p>
+              Yêu thích sáng tạo công thức mới và lên kế hoạch
+              cho những buổi sinh hoạt của câu lạc bộ.
+            </p>
+
+            <div class="dream">
+              Trầm lặng, tỉ mỉ và kiên nhẫn. Nhi luôn chăm chút
+              những chi tiết nhỏ, từ khâu chuẩn bị nguyên liệu
+              đến cách hoàn thiện và trình bày món ăn.
+            </div>
+
+            <div class="university-box">
+              <span class="university-label">🎓 Trường đại học mơ ước</span>
+              <a
+                href="https://www.stanford.edu/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="university-link"
+              >
+                Stanford University ↗
+              </a>
+            </div>
+
+          </article>
+
+          <!-- THÀNH VIÊN 2 -->
+          <article class="card member-card">
+
+            <!-- Nếu có ảnh, thay phần photo-placeholder bằng:
+            <img src="LINK_ANH_NGOC_DIEP" alt="Ảnh Ngọc Diệp" class="member-photo">
+            -->
+
+            <div class="photo-placeholder">
+              <span class="symbol">📷</span>
+              <strong>ẢNH NGỌC DIỆP</strong>
+            </div>
+
+            <h3>Đinh Ngọc Diệp</h3>
+
+            <p>
+              Thích khám phá các món ăn mới, ghi lại công thức
+              và chia sẻ kinh nghiệm nấu nướng.
+            </p>
+
+            <div class="dream">
+              <strong>Ước mơ:</strong> Tìm hiểu thêm về ẩm thực
+              của nhiều vùng miền và học hỏi những cách chế biến
+              sáng tạo từ các nền văn hóa khác nhau.
+            </div>
+
+            <div class="university-box">
+              <span class="university-label">🎓 Trường đại học mơ ước</span>
+
+              <!-- THAY LINK_TRUONG_DAI_HOC_NGOC_DIEP bằng link thật -->
+              <a
+                href="https://www.yonsei.ac.kr/en_sc/index.do"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="university-link"
+              >
+                Yonsei University ↗
+              </a>
+            </div>
+
+          </article>
+
+          <!-- THÀNH VIÊN 3 -->
+          <article class="card member-card">
+
+            <!-- Nếu có ảnh, thay phần photo-placeholder bằng:
+            <img src="LINK_ANH_HAI_ANH" alt="Ảnh Hải Anh" class="member-photo">
+            -->
+
+            <div class="photo-placeholder">
+              <span class="symbol">📷</span>
+              <strong>ẢNH HẢI ANH</strong>
+            </div>
+
+            <h3>Phạm Hải Anh</h3>
+
+            <p>
+              Ghi lại những khoảnh khắc đáng nhớ và giúp
+              các hoạt động của câu lạc bộ thêm sinh động.
+            </p>
+
+            <div class="dream">
+              <strong>Ước mơ:</strong> Cùng mọi người tạo ra
+              thật nhiều kỷ niệm đẹp và góp phần xây dựng
+              một câu lạc bộ sáng tạo, gắn kết.
+            </div>
+
+            <div class="university-box">
+              <span class="university-label">🎓 Trường đại học mơ ước</span>
+
+              <!-- THAY LINK_TRUONG_DAI_HOC_HAI_ANH bằng link thật -->
+              <a
+                href="https://www.harvard.edu/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="university-link"
+              >
+                Havard University ↗
+              </a>
+            </div>
+
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- HOẠT ĐỘNG -->
+    <section class="section bg-white" id="activities">
+      <div class="container">
+
+        <div class="section-heading">
+          <p class="eyebrow">WHAT WE DO</p>
+          <h2 class="section-title">More than just cooking</h2>
+
+          <p class="section-intro">
+            Cùng trải nghiệm, thực hành và khám phá những điều thú vị
+            thông qua các hoạt động của Cooking Club.
+          </p>
+        </div>
+
+        <div class="grid-3">
+
+          <article class="activity-card">
+            <span class="activity-icon">👩‍🍳</span>
+            <h3>Workshop nấu ăn</h3>
+            <p>
+              Cùng nhau học cách chế biến món mới, rèn luyện kỹ năng
+              và chia sẻ bí quyết để món ăn ngon hơn.
+            </p>
+          </article>
+
+          <article class="activity-card">
+            <span class="activity-icon">🥗</span>
+            <h3>Thử thách công thức</h3>
+            <p>
+              Sáng tạo món ăn từ những nguyên liệu quen thuộc,
+              thử sức với ý tưởng mới và khám phá khẩu vị riêng.
+            </p>
+          </article>
+
+          <article class="activity-card">
+            <span class="activity-icon">🎉</span>
+            <h3>Ngày hội ẩm thực</h3>
+            <p>
+              Trưng bày món ăn, giới thiệu nét đặc sắc của ẩm thực
+              và lan tỏa niềm vui đến bạn bè trong trường.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- LỊCH SINH HOẠT -->
+    <section class="section bg-cream" id="schedule">
+      <div class="container">
+
+        <div class="section-heading">
+          <p class="eyebrow">PLAN TOGETHER</p>
+          <h2 class="section-title">Our weekly schedule</h2>
+
+          <p class="section-intro">
+            Sắp xếp thời gian để cùng nhau học hỏi, thực hành
+            và tận hưởng niềm vui nấu nướng.
+          </p>
+        </div>
+
+        <div class="schedule-wrap">
+          <table class="schedule">
+
+            <thead>
+              <tr>
+                <th>Hoạt động</th>
+                <th>Thứ 2</th>
+                <th>Thứ 3</th>
+                <th>Thứ 4</th>
+                <th>Thứ 5</th>
+                <th>Thứ 6</th>
+                <th>Thứ 7</th>
+                <th>Chủ nhật</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>Chia sẻ công thức</td>
+                <td class="marked">✓</td>
+                <td></td>
+                <td></td>
+                <td class="marked">✓</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+
+              <tr>
+                <td>Thực hành nấu ăn</td>
+                <td></td>
+                <td></td>
+                <td class="marked">✓</td>
+                <td></td>
+                <td></td>
+                <td class="marked">✓</td>
+                <td></td>
+              </tr>
+
+              <tr>
+                <td>Thử thách món mới</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="marked">✓</td>
+                <td></td>
+                <td></td>
+              </tr>
+
+              <tr>
+                <td>Giao lưu thành viên</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="marked">✓</td>
+              </tr>
+
+              <tr>
+                <td>Lên kế hoạch tuần mới</td>
+                <td></td>
+                <td class="marked">✓</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+
+          </table>
+        </div>
+
+        <div class="schedule-legend">
+          <span class="legend-check">✓</span>
+          <span>Ngày có hoạt động dự kiến.</span>
+        </div>
+
+        <p class="schedule-note">
+          * Lịch có thể được điều chỉnh tùy theo kế hoạch học tập
+          và thông báo của câu lạc bộ.
+        </p>
+
+      </div>
+    </section>
+
+    <!-- GÓC CÔNG THỨC -->
+    <section class="section bg-white" id="recipes">
+      <div class="container">
+
+        <div class="section-heading">
+          <p class="eyebrow">FROM OUR KITCHEN</p>
+          <h2 class="section-title">A Taste of Our Recipes</h2>
+
+          <p class="section-intro">
+            Cùng khám phá những món ăn đặc trưng từ nhiều quốc gia.
+            Mỗi công thức đều có danh sách nguyên liệu, cách thực hiện
+            và một khung video hướng dẫn riêng.
+          </p>
+        </div>
+
+        <!-- MÓN 1: THÁI LAN -->
+        <article class="recipe">
+
+          <div class="recipe-header">
+            <div>
+              <span class="tag">THAILAND · THÁI LAN</span>
+              <h3>🍜 Pad Thai</h3>
+            </div>
+          </div>
+
+          <p class="recipe-description">
+            Pad Thai là món mì xào nổi tiếng của Thái Lan, kết hợp
+            vị chua, ngọt và mặn cùng đậu phộng rang, rau thơm và chanh tươi.
+          </p>
+
+          <div class="recipe-details">
+
+            <div>
+              <h4>Nguyên liệu</h4>
+              <ul>
+                <li>200 g bánh phở khô hoặc mì gạo</li>
+                <li>150 g tôm hoặc thịt gà</li>
+                <li>1 quả trứng</li>
+                <li>Giá đỗ và hành lá</li>
+                <li>Đậu phộng rang giã nhỏ</li>
+                <li>Nước sốt me, đường và nước mắm</li>
+                <li>Chanh tươi và dầu ăn</li>
+              </ul>
+            </div>
+
+            <div>
+              <h4>Cách thực hiện</h4>
+              <ol>
+                <li>Ngâm mì gạo theo hướng dẫn trên bao bì rồi để ráo.</li>
+                <li>Pha nước sốt me với đường và nước mắm.</li>
+                <li>Xào tôm hoặc thịt gà cho chín, sau đó cho trứng vào đảo đều.</li>
+                <li>Thêm mì và nước sốt, đảo đến khi các nguyên liệu thấm đều.</li>
+                <li>Cho giá đỗ, hành lá vào, rồi dùng kèm đậu phộng và chanh.</li>
+              </ol>
+            </div>
+
+          </div>
+
+          <div class="recipe-video">
+            <h4 class="recipe-video-title">🎬 Video hướng dẫn Pad Thai</h4>
+
+            <!-- VIDEO PAD THAI:
+                 Thay DAN_LINK_EMBED_VIDEO_PAD_THAI bằng link nhúng YouTube. -->
+            
+<div class="video-box">
+  <iframe
+    src="https://www.youtube.com/embed/dcEvFb8fmEQ"
+    title="Hướng dẫn nấu Pad Thai"
+    loading="lazy"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen
+  ></iframe>
+</div>
+
+        </article>
+
+        <!-- MÓN 2: NHẬT BẢN -->
+        <article class="recipe">
+
+          <div class="recipe-header">
+            <div>
+              <span class="tag">JAPAN · NHẬT BẢN</span>
+              <h3>🍣 Sushi</h3>
+            </div>
+          </div>
+
+          <p class="recipe-description">
+            Sushi là món ăn tiêu biểu của Nhật Bản, nổi bật với cơm trộn
+            giấm và cách kết hợp tinh tế giữa các nguyên liệu tươi ngon.
+          </p>
+
+          <div class="recipe-details">
+
+            <div>
+              <h4>Nguyên liệu</h4>
+              <ul>
+                <li>300 g gạo sushi hoặc gạo hạt ngắn</li>
+                <li>Rong biển khô dùng cuộn sushi</li>
+                <li>Dưa chuột và cà rốt</li>
+                <li>Thanh cua hoặc nguyên liệu đã được nấu chín</li>
+                <li>Giấm gạo, đường và một chút muối</li>
+                <li>Nước tương để ăn kèm</li>
+              </ul>
+            </div>
+
+            <div>
+              <h4>Cách thực hiện</h4>
+              <ol>
+                <li>Nấu chín gạo, sau đó trộn nhẹ với giấm gạo, đường và muối.</li>
+                <li>Cắt dưa chuột, cà rốt và nhân thành những thanh dài.</li>
+                <li>Đặt rong biển lên mành cuộn, trải một lớp cơm mỏng lên trên.</li>
+                <li>Xếp nhân vào giữa rồi cuộn chặt tay.</li>
+                <li>Dùng dao sắc cắt thành từng khoanh vừa ăn và trình bày ra đĩa.</li>
+              </ol>
+            </div>
+
+          </div>
+
+          <div class="recipe-video">
+            <h4 class="recipe-video-title">🎬 Video hướng dẫn Sushi</h4>
+
+            <!-- VIDEO SUSHI:
+                 Thay DAN_LINK_EMBED_VIDEO_SUSHI bằng link nhúng YouTube. -->
+                 
+
+<video controls width="100%" style="border-radius: 12px;">
+  <source src=""C:\Users\tranm\Videos\Bản ghi màn hình\Quay màn hình 2026-10-15 204022.mp4"" type="video/mp4">
+</video>
+
+
+
+
+        </article>
+
+        <!-- MÓN 3: Ý -->
+        <article class="recipe">
+
+          <div class="recipe-header">
+            <div>
+              <span class="tag">ITALY · Ý</span>
+              <h3>🍕 Margherita Pizza</h3>
+            </div>
+          </div>
+
+          <p class="recipe-description">
+            Margherita Pizza là món pizza kinh điển của Ý, kết hợp
+            đế bánh, sốt cà chua, phô mai mozzarella và lá húng quế thơm.
+          </p>
+
+          <div class="recipe-details">
+
+            <div>
+              <h4>Nguyên liệu</h4>
+              <ul>
+                <li>1 đế pizza</li>
+                <li>150 g sốt cà chua</li>
+                <li>150 g phô mai mozzarella</li>
+                <li>Lá húng quế tươi</li>
+                <li>Dầu ô liu</li>
+                <li>Một chút muối và tiêu nếu cần</li>
+              </ul>
+            </div>
+
+            <div>
+              <h4>Cách thực hiện</h4>
+              <ol>
+                <li>Làm nóng lò nướng theo hướng dẫn của đế bánh.</li>
+                <li>Phết đều sốt cà chua lên bề mặt đế pizza.</li>
+                <li>Xếp phô mai mozzarella lên trên và thêm một ít dầu ô liu.</li>
+                <li>Nướng đến khi đế bánh chín vàng và phô mai tan chảy.</li>
+                <li>Thêm lá húng quế tươi sau khi lấy bánh ra khỏi lò rồi thưởng thức.</li>
+              </ol>
+            </div>
+
+          </div>
+
+          <div class="recipe-video">
+            <h4 class="recipe-video-title">🎬 Video hướng dẫn Pizza Margherita</h4>
+
+            <!-- VIDEO PIZZA:
+                 Thay DAN_LINK_EMBED_VIDEO_PIZZA bằng link nhúng YouTube. -->
+
+<div class="video-box">
+<iframe
+  src="https://www.youtube.com/embed/4VSW29yWPlA?start=247"
+  title="Video hướng dẫn nấu ăn"
+  loading="lazy"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  allowfullscreen
+></iframe>
+
+        </article>
+
+    <!-- THAM GIA CÂU LẠC BỘ -->
+    <section class="section bg-wine" id="join">
+      <div class="container">
+
+        <div class="join-banner">
+          <p class="eyebrow">JOIN OUR COMMUNITY</p>
+          <h2>Learn. Create. Connect.</h2>
+          <p>
+            Một căn bếp nhỏ có thể tạo nên những niềm vui lớn.
+            Hãy cùng Cooking Club bắt đầu hành trình của bạn!
+          </p>
+        </div>
+
+        <!-- ẢNH CHUNG CỦA BA THÀNH VIÊN -->
+        <!-- Có ảnh rồi thì thay div bên dưới bằng:
+        <img
+          src="LINK_ANH_CHUNG_CUA_NHOM"
+          alt="Ba thành viên Cooking Club"
+          style="width:100%;max-width:900px;display:block;margin:0 auto 45px;border-radius:8px;"
+        >
+        -->
+        <div class="group-photo-placeholder">
+          <span class="symbol">📷</span>
+          <strong>ẢNH BA THÀNH VIÊN CỦA COOKING CLUB</strong>
+          <small>Thay khu vực này bằng ảnh chung của nhóm.</small>
+        </div>
+
+        <div class="grid-3" style="margin-bottom:45px;">
+
+          <div class="benefit">
+            <strong>🍳 Học kỹ năng mới</strong>
+            <p>
+              Thực hành nấu ăn và khám phá những công thức thú vị.
+            </p>
+          </div>
+
+          <div class="benefit">
+            <strong>🤝 Kết nối bạn bè</strong>
+            <p>
+              Gặp gỡ những người có cùng sở thích và đam mê.
+            </p>
+          </div>
+
+          <div class="benefit">
+            <strong>✨ Phát triển bản thân</strong>
+            <p>
+              Rèn luyện sự sáng tạo, tinh thần hợp tác và trách nhiệm.
+            </p>
+          </div>
+
+        </div>
+
+        <div class="form-layout">
+
+          <aside class="form-aside">
+            <p class="eyebrow">BECOME A MEMBER</p>
+
+            <h3>Ready to join us in the kitchen?</h3>
+
+            <p>
+              Điền thông tin đăng ký để thể hiện sự quan tâm
+              và tham gia những hoạt động sắp tới của Cooking Club.
+            </p>
+
+            <p>💌 Cùng nấu ăn, cùng trưởng thành!</p>
+          </aside>
+
+          <div class="form-card">
+
+         
+
+<script>
+  /* MENU TRÊN ĐIỆN THOẠI */
+  const menuToggle = document.getElementById("menuToggle");
+  const navLinks = document.getElementById("navLinks");
+
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener("click", function () {
+      const isOpen = navLinks.classList.toggle("show");
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    document.querySelectorAll(".nav-links a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        navLinks.classList.remove("show");
+        menuToggle.setAttribute("aria-expanded", "false");
+
+        document.querySelectorAll(".nav-links a").forEach(function (item) {
+          item.classList.remove("active");
+        });
+
+        link.classList.add("active");
+      });
+    });
+  }
+
+  /* FORM ĐĂNG KÝ COOKING CLUB */
+  const joinForm = document.getElementById("joinForm");
+  const formMessage = document.getElementById("formMessage");
+  const submitButton = document.getElementById("submitButton");
+
+  /*
+    THAY URL DƯỚI ĐÂY BẰNG ENDPOINT THẬT
+    DO DỊCH VỤ NHẬN EMAIL CUNG CẤP.
+  */
+  const emailEndpoint = "DAN_ENDPOINT_CUA_M";
+
+  joinForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const fullName = document.getElementById("fullName").value.trim();
+    const className = document.getElementById("className").value.trim();
+    const email = document.getElementById("email").value.trim();
+
+    showFormMessage("", "");
+
+    if (!fullName || !className || !email) {
+      showFormMessage(
+        "error",
+        "Vui lòng điền đầy đủ họ tên, lớp và email."
+      );
+      return;
+    }
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailPattern.test(email)) {
+      showFormMessage(
+        "error",
+        "Email chưa hợp lệ. Vui lòng kiểm tra lại."
+      );
+      document.getElementById("email").focus();
+      return;
+    }
+
+    if (
+      !emailEndpoint.startsWith("https://") ||
+      emailEndpoint === "https://DAN_ENDPOINT_CUA_M"
+    ) {
+      showFormMessage(
+        "error",
+        "Website chưa được kết nối dịch vụ email. Cần thêm endpoint thật trước khi gửi."
+      );
+      return;
+    }
+
+    /*
+      Tạo form gửi dữ liệu trực tiếp.
+      Trình duyệt sẽ chuyển đến dịch vụ nhận form.
+    */
+    const sendForm = document.createElement("form");
+    sendForm.method = "POST";
+    sendForm.action = emailEndpoint;
+    sendForm.enctype = "multipart/form-data";
+
+    const fields = new FormData(joinForm);
+
+    fields.forEach(function (value, key) {
+      if (typeof value === "string") {
+        const input = document.createElement("input");
+        input.type = "hidden";
+        input.name = key;
+        input.value = value;
+        sendForm.appendChild(input);
+      }
+    });
+
+    document.body.appendChild(sendForm);
+
+    showFormMessage(
+      "success",
+      "Đang chuyển đơn đăng ký đến dịch vụ nhận form. Hãy chờ kết quả xác nhận."
+    );
+
+    sendForm.submit();
+  });
+
+  function showFormMessage(type, message) {
+    formMessage.className = "form-message " + type;
+    formMessage.textContent = message;
+
+    if (message) {
+      formMessage.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest"
+      });
+    }
+  }
+</script>
+
+
+</body>
+</html>
